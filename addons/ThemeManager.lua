@@ -197,7 +197,7 @@ local ThemeManager = {} do
 
 		return decoded
 	end
-	--[[
+	
 	function ThemeManager:LoadDefault()
 		local theme = 'Default'
 		local content = isfile(self.Folder .. '/themes/default.txt') and readfile(self.Folder .. '/themes/default.txt')
@@ -224,7 +224,7 @@ local ThemeManager = {} do
 	function ThemeManager:SaveDefault(theme)
 		writefile(self.Folder .. '/themes/default.txt', theme)
 	end
-	]]
+	
 	function ThemeManager:SaveCustomTheme(file)
 		if file:gsub(' ', '') == '' then
 			return self.Library:Notify('Invalid file name for theme (empty)', 3)
