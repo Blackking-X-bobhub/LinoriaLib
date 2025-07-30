@@ -45,14 +45,8 @@ local ThemeManager = {} do
 
 	ThemeManager.Library = nil
 	ThemeManager.BuiltInThemes = {
-		['Default'] 		= { 1, httpService:JSONDecode('{"FontColor":"ffffff","MainColor":"1c1c1c","AccentColor":"0055ff","BackgroundColor":"141414","OutlineColor":"323232"}') },
-		['BBot'] 			= { 2, httpService:JSONDecode('{"FontColor":"ffffff","MainColor":"1e1e1e","AccentColor":"7e48a3","BackgroundColor":"232323","OutlineColor":"141414"}') },
-		['Fatality']		= { 3, httpService:JSONDecode('{"FontColor":"ffffff","MainColor":"1e1842","AccentColor":"c50754","BackgroundColor":"191335","OutlineColor":"3c355d"}') },
-		['Jester'] 			= { 4, httpService:JSONDecode('{"FontColor":"ffffff","MainColor":"242424","AccentColor":"db4467","BackgroundColor":"1c1c1c","OutlineColor":"373737"}') },
-		['Mint'] 			= { 5, httpService:JSONDecode('{"FontColor":"ffffff","MainColor":"242424","AccentColor":"3db488","BackgroundColor":"1c1c1c","OutlineColor":"373737"}') },
-		['Tokyo Night'] 	= { 6, httpService:JSONDecode('{"FontColor":"ffffff","MainColor":"191925","AccentColor":"6759b3","BackgroundColor":"16161f","OutlineColor":"323232"}') },
-		['Ubuntu'] 			= { 7, httpService:JSONDecode('{"FontColor":"ffffff","MainColor":"3e3e3e","AccentColor":"e2581e","BackgroundColor":"323232","OutlineColor":"191919"}') },
-		['Quartz'] 			= { 8, httpService:JSONDecode('{"FontColor":"ffffff","MainColor":"232330","AccentColor":"426e87","BackgroundColor":"1d1b26","OutlineColor":"27232f"}') },
+		['Blackking'] = { 1, httpService:JSONDecode('{"MainColor":"1c1c1c","AccentColor":"ffffff","OutlineColor":"323232","BackgroundColor":"242424","FontColor":"ffffff"}') },
+		['bobhub'] = { 2, httpService:JSONDecode('{"MainColor":"171616","AccentColor":"ff9e9e","OutlineColor":"323232","BackgroundColor":"212020","FontColor":"ffffff"}') },
 	}
 
 	function ApplyBackgroundVideo(videoLink)
@@ -203,7 +197,7 @@ local ThemeManager = {} do
 
 		return decoded
 	end
-
+	--[[
 	function ThemeManager:LoadDefault()
 		local theme = 'Default'
 		local content = isfile(self.Folder .. '/themes/default.txt') and readfile(self.Folder .. '/themes/default.txt')
@@ -230,7 +224,7 @@ local ThemeManager = {} do
 	function ThemeManager:SaveDefault(theme)
 		writefile(self.Folder .. '/themes/default.txt', theme)
 	end
-
+	]]
 	function ThemeManager:SaveCustomTheme(file)
 		if file:gsub(' ', '') == '' then
 			return self.Library:Notify('Invalid file name for theme (empty)', 3)
@@ -314,7 +308,6 @@ local ThemeManager = {} do
 			self:SaveDefault(self.Library.Options.ThemeManager_ThemeList.Value)
 			self.Library:Notify(string.format('Set default theme to %q', self.Library.Options.ThemeManager_ThemeList.Value))
 		end)
-
 		self.Library.Options.ThemeManager_ThemeList:OnChanged(function()
 			self:ApplyTheme(self.Library.Options.ThemeManager_ThemeList.Value)
 		end)
